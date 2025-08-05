@@ -1,0 +1,60 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo: {
+  typeName: 'Search',
+  typeNamePlural: 'Searches',
+  title: { value: 'CompanyName' },
+  description: { value: 'Prompt' }
+}
+annotate view ZC_FIX_SEARCH_MD with
+{
+  @UI.facet: [
+    {
+      id: 'SearchDetails',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Search Details',
+      position: 10,
+      targetElement: '_SearchDetails'
+    }
+  ]
+
+//  @UI.lineItem: [{ position: 10 }]
+//  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 10 }]
+  SearchID;
+
+  @UI.lineItem: [{ position: 20, label: 'Search Prompt' }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 20 }]
+  Prompt;
+
+  @UI.lineItem: [{ position: 30, label: 'Company Name' }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 30 }]
+  CompanyName;
+
+  @UI.lineItem: [{ position: 40, label: 'Country' }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 40 }]
+  Country;
+
+  @UI.lineItem: [{ position: 50 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 50 }]
+  EmployeeCount;
+  
+    @UI.lineItem: [{ position: 52 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 52 }]
+  MainIndustry;
+  
+    @UI.lineItem: [{ position: 53 }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 53 }]
+ FinancialCondRating;
+   
+  @UI.lineItem: [{ position: 60, label: 'Created By' }]
+  @UI.fieldGroup: [{ qualifier: 'GeneralInfo', position: 60 }]
+  CreatedByName;
+
+  @UI.hidden: true
+  ChangedByName;
+
+  @UI.hidden: true
+  CreatedBy;
+
+
+}

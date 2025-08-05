@@ -1,0 +1,69 @@
+managed implementation in class zbp_i_fix_search_md unique;
+strict;
+
+define behavior for ZI_FIX_SEARCH_MD alias SearchMasterData
+persistent table zfix_search_md
+
+lock master
+authorization master ( global )
+etag master ChangedAt
+
+{
+  create;
+  update;
+  delete;
+
+  field ( mandatory ) Prompt;
+
+  // Early numbering for GUIDs
+  field ( readonly, numbering : managed ) SearchID;
+
+  association _SearchDetails { create; }
+
+  mapping for zfix_search_md
+  {
+    SearchID = search_id;
+    Prompt = prompt;
+    CompanyName = company_name;
+    Country = country;
+    EmployeeCount = employee_count;
+    MainIndustry = main_industry;
+    FinancialCondRating = financial_cond_rating;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+    CreatedBp = created_bp;
+    CreatedBpId = created_bp_id;
+    ChangedBy = changed_by;
+    ChangedAt = changed_at;
+  }
+}
+
+define behavior for ZI_FIX_SEARCH_DTLS alias SearchDetails
+persistent table zfix_search_dtls
+lock dependent by _SearchMasterData
+authorization dependent
+{
+  // Field Controls
+  field ( readonly ) SearchID, DetailsId, CreatedAt, CreatedBy;
+  field ( mandatory ) ResponseData;
+
+  // Early numbering for GUIDs
+  field ( numbering : managed ) DetailsId;
+
+  // Associations
+  association _SearchMasterData;
+
+  // Standard Operations
+  update;
+  delete;
+
+  // Mapping
+  mapping for zfix_search_dtls
+  {
+    SearchID = search_id;
+    DetailsId = details_id;
+    ResponseData = response_data;
+    CreatedBy = created_by;
+    CreatedAt = created_at;
+  }
+}

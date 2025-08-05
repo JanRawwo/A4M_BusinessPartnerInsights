@@ -1,0 +1,20 @@
+projection;
+strict;
+
+define behavior for ZC_FIX_SEARCH_MD alias SearchMDProjection
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use association _SearchDetails { create; }
+}
+
+define behavior for ZC_FIX_SEARCH_DTLS alias SearchDetailsProjection
+{
+  use update;
+  use delete;
+
+  use association _SearchMasterData;
+}

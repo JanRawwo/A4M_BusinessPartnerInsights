@@ -1,0 +1,5 @@
+@EndUserText.label: 'Fixtra Parnter Search'
+define service ZUI_FIX_SEARCH {
+  expose ZC_FIX_SEARCH_MD as SearchMasterData;
+  expose ZC_FIX_SEARCH_DTLS as SearchDetails;
+}
